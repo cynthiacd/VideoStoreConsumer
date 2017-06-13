@@ -5,11 +5,27 @@
     <link rel="stylesheet" type="text/css" href="css/_settings.css">
     <link rel="stylesheet" type="text/css" href="css/foundation.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Backbone Baseline</title>
+    <title>Video Store</title>
   </head>
   <body>
+    <header>
+      <h1>Video Store</h1>
+    </header>
+
+    <main class="row">
+      <button class="button" id="rental-list">Get Rails DB Movies</button>
+      <section id="movie-list"></section>
+    </main>
+
+    <!-- Templates -->
+    <script id="" type="text/template">
+      <img alt="movie img" src=<%- image_url %> >
+      <h4>Title: <%- title %></h4>
+      <p>Summary: <%- overview %></p>
+      <p>Release Date: <%- release_date %></p>
+      <p>Inventory: <%- inventory%></p>
+    </script>
 
     <script src="/app.bundle.js"></script>
-
   </body>
   </html>
