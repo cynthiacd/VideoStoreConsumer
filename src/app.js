@@ -24,7 +24,7 @@ var buildMovieList = function(event){
 var buildMovieListTMDb = function(event){
   console.log("Getting movies from TMDb!");
   var searchText = $('#search').val();
-  console.log(searchText);
+  // console.log(searchText);
   var movieList = new MovieList();
   movieList.cumstomUrl(searchText);
   movieList.fetch();
