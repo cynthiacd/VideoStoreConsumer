@@ -20,8 +20,17 @@ var MovieView = Backbone.View.extend({
 
     // re-attach DOM event listners
     this.delegateEvents();
-    
+
     return this;
+  },
+
+  events: {
+    'click .btn-add-lib': 'addMovie'
+  },
+
+  addMovie: function(event) {
+    console.log('clicked on add movie button');
+    this.trigger('add', this);
   }
 
 });
