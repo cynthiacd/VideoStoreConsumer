@@ -1,11 +1,11 @@
 @include foundation-everything;
 
 main {
-    background: lightblue;
+    background: white;
 }
 
 header {
-  background-color: lightgreen;
+  background-color: grey;
   padding: 0.5rem;
 }
 
@@ -37,8 +37,22 @@ aside label {
 div {
   display: inline;
 }
-/*
-* {
-  border-style: solid;
+
+.movie-text {
+  display: inline-block;
 }
-*/
+
+.columns {
+  float: none;
+}
+
+img {
+  width: 30%;
+  height: 300px;
+  padding: 1%;
+  border-top: solid;
+}
+
+/*#movie-text {
+  border-top: solid;
+}*/
