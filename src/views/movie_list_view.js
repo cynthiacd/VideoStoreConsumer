@@ -7,7 +7,15 @@ var MovieListView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.templateCard;
 
+    this.movieViews = [];
+
+    this.model.forEach(function(rawMovie) {
+      this.addMovie(rawMovie);
+    }.bind(this) );
+
+    this.listenTo(this.model, "add", this.addMovie);
     this.listenTo(this.model, "update", this.render);
+    // this.listenTo(this.model, "remove", this.removeMovie);
   },
 
   render: function(){
@@ -17,18 +25,22 @@ var MovieListView = Backbone.View.extend({
 
     var that = this;
 
-    this.model.each( function(movie) {
-      var movieView = new MovieView({
-        model: movie,
-        template: that.template
-        // tagName: 'li'
-      });
-
-      that.$('#movie-list').append( movieView.render().$el );
+    this.movieViews.forEach(function(movieView){
+      that.$('#movie-list').append(movieView.$el);
     });
 
     return this;
+  },
+
+  addMovie: function(rawMovie){
+    var movieView = new MovieView({
+      model: rawMovie,
+      template: this.template
+    });
+
+    this.movieViews.push(movieView);
   }
+
 });
 
 export default MovieListView;
