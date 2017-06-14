@@ -21,7 +21,23 @@ var buildMovieList = function(event){
   });
 };
 
+var buildMovieListTMDb = function(event){
+  console.log("Getting movies from TMDb!");
+  var searchText = $('#search').val();
+  console.log(searchText);
+  var movieList = new MovieList();
+  movieList.cumstomUrl(searchText);
+  movieList.fetch();
+
+  var movieListView = new MovieListView({
+    model: movieList,
+    templateCard: _.template( $('#movie-card-template').html() ),
+    el: 'main'
+  });
+}
+
 $(document).ready(function() {
 
-  $('#rental-list').click( buildMovieList);
+  $('#rental-list').click(buildMovieList);
+  $('#btn-search').click(buildMovieListTMDb);
 });
