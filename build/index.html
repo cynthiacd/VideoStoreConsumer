@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Video Store</title>
   </head>
+
   <body>
+
     <header>
       <h1>Video Store</h1>
     </header>
@@ -32,9 +34,14 @@
         <h4>Title: <%- title %></h4>
         <p>Summary: <%- overview %></p>
         <p>Release Date: <%- release_date %></p>
-        <p>Inventory: <%- inventory%></p>
+        <% if ( inventory === null ) { %>
+          <button class="button">Add to Library</button>
+        <% } else { %>
+          <p>Inventory: <%- inventory%></p>
+        <% } %>
       </div>
     </script>
+
 
     <script src="/app.bundle.js"></script>
   </body>
