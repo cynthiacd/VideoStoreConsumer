@@ -48,17 +48,14 @@ var MovieListView = Backbone.View.extend({
   },
 
   addToLib: function(movieView){
-    console.log("made it to add to lib function");
+    // console.log("made it to add to lib function");
     var title = movieView.model.get("title")
-    console.log(title);
-    // movieView.model.create();
-    this.model.create(movieView.model);
-
-//     addPet: function(){
-//   var pet = new Pet()
-//   this.model.create(pet)
-// }
-
+    var inventory = this.$('#inventory').val();
+    movieView.model.set('inventory', inventory);
+    this.model.create(movieView.model, {
+      error: function(reponse) { alert("Error - Movie was not added to library") },
+      success: function(response) { alert(title + ': was added successfully!' + "\n" + 'Inventory: ' + inventory) }
+    });
   }
 
 });

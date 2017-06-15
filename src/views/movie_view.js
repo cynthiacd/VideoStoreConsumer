@@ -26,11 +26,9 @@ var MovieView = Backbone.View.extend({
 
   events: {
     'click .btn-add-lib': 'addMovie'
-  
   },
 
   addMovie: function(event) {
-    console.log('clicked on add movie button');
     this.trigger('addToLib', this);
   }
 

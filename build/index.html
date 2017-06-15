@@ -32,7 +32,12 @@
         <h4>Title: <%- title %></h4>
         <p>Summary: <%- overview %></p>
         <p>Release Date: <%- release_date %></p>
+
         <% if ( inventory === null ) { %>
+          <p>
+            Quantity:
+            <input type="number" name="inventory" id='inventory' min="1" max="5" value="1">
+          </p>
           <button class="button btn-add-lib">Add to Library</button>
         <% } else { %>
           <p>Inventory: <%- inventory%></p>
