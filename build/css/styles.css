@@ -5,8 +5,9 @@ main {
 }
 
 header {
-  background-color: grey;
+  background-color: lightgrey;
   padding: 0.5rem;
+  text-align: center;
 }
 
 #completed-checkbox {
@@ -35,24 +36,39 @@ aside label {
 }
 
 div {
-  display: inline;
+  display: block;
 }
 
-.movie-text {
-  display: inline-block;
+li {
+  border: solid;
+  /*height: 27em;*/
+  padding: 2%;
+  margin: 3%
+}
+
+#movie-text {
+  /*display: inline-block;*/
+  /*min-height: 95%;*/
+  /*background-color: lightblue;*/
 }
 
 .columns {
   float: none;
 }
 
+/*.columns:last-child:not(:first-child) {
+  float: none;
+}*/
+
 img {
-  width: 30%;
-  height: 300px;
-  padding: 1%;
-  border-top: solid;
+  /*width: 50%;*/
+  /*height: 20em;*/
+  /*padding: 1%;*/
+  margin-top: 0%;
+  margin-left: 2%;
+  /*border-top: solid;*/
 }
 
-/*#movie-text {
-  border-top: solid;
-}*/
+#rental-list {
+  margin-top: 1%;
+}
