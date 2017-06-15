@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 
 var MovieView = Backbone.View.extend({
-  // tagName: 'li',
+  tagName: 'li',
   className: 'movieInfo',
 
   initialize: function(params) {
