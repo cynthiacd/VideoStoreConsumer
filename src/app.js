@@ -12,7 +12,11 @@ var buildMovieList = function(event){
   console.log("clicked on the button");
 
   var movieList = new MovieList();
-  movieList.fetch();
+  movieList.fetch(
+    { error: function(model, response) { alert("Server Error - Try Again Later") },
+      success: function(model, response) { console.log( "API success - got movies" ) }
+    }
+  );
 
   var movieListView = new MovieListView({
     model: movieList,
@@ -27,7 +31,11 @@ var buildMovieListTMDb = function(event){
   // console.log(searchText);
   var movieList = new MovieList();
   movieList.cumstomUrl(searchText);
-  movieList.fetch();
+  movieList.fetch(
+    { error: function(model, response) { alert("Server Error - Try Again Later") },
+      success: function(model, response) { console.log( "API success - got movies" ) }
+    }
+  );
 
   var movieListView = new MovieListView({
     model: movieList,
