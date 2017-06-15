@@ -49,7 +49,16 @@ var MovieListView = Backbone.View.extend({
 
   addToLib: function(movieView){
     console.log("made it to add to lib function");
-    console.log(movieView);
+    var title = movieView.model.get("title")
+    console.log(title);
+    // movieView.model.create();
+    this.model.create(movieView.model);
+
+//     addPet: function(){
+//   var pet = new Pet()
+//   this.model.create(pet)
+// }
+
   }
 
 });
