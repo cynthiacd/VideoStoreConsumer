@@ -13,14 +13,18 @@
     </header>
 
     <main class="row">
-      <button class="row button" id="rental-list">Get Rails DB Movies</button>
+      <button class="button" id="rental-list">Get Rails DB Movies</button>
+      <button class="button" id="rental-single">Find One Movie from DB</button>
+      <button class="button" id="new-movies-list">Search For New Movies</button>
+
       <section class="row" id="search-bar">
         <label>
           Search
           <input type="text" name="search" id="search" placeholder="Search..">
         </label>
-        <button class="button" id="btn-search">Search</button>
+        <button class="button btn-search">Search</button>
       </section>
+
       <section id="movie-list" class="row"></section>
     </main>
 
@@ -42,7 +46,11 @@
         <% } else { %>
           <p>Inventory: <%- inventory%></p>
         <% } %>
+        <button class="button btn-rental">Check Out This Movie</button>
       <!-- </div> -->
+    </script>
+
+    <script >
     </script>
 
     <script src="/app.bundle.js"></script>

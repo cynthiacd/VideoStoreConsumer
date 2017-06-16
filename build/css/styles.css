@@ -56,10 +56,6 @@ li {
   float: none;
 }
 
-/*.columns:last-child:not(:first-child) {
-  float: none;
-}*/
-
 img {
   /*width: 50%;*/
   /*height: 20em;*/
@@ -69,6 +65,10 @@ img {
   /*border-top: solid;*/
 }
 
-#rental-list {
+.button {
   margin-top: 1%;
+}
+
+#search-bar {
+  display: none;
 }

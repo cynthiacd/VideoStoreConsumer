@@ -7,7 +7,7 @@ var MovieList = Backbone.Collection.extend({
 
   cumstomUrl: function(searchText){
     this.url = this.url + "?query=" + searchText;
-    console.log(this.url);
+    // console.log(this.url);
     return this;
   }
 });

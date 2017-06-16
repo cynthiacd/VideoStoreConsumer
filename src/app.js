@@ -9,6 +9,8 @@ import MovieListView from './views/movie_list_view';
 
 
 var buildMovieList = function(event){
+  $("#search-bar").hide();
+
   console.log("clicked on the button");
 
   var movieList = new MovieList();
@@ -25,7 +27,7 @@ var buildMovieList = function(event){
   });
 };
 
-var buildMovieListTMDb = function(event){
+var buildMovieListTMDb = function(event) {
   console.log("Getting movies from TMDb!");
   var searchText = $('#search').val();
   // console.log(searchText);
@@ -42,10 +44,28 @@ var buildMovieListTMDb = function(event){
     templateCard: _.template( $('#movie-card-template').html() ),
     el: 'main'
   });
+};
+
+var toggleSearchBar = function(event) {
+  event.stopPropagation();
+  $("#search-bar").toggle();
+};
+
+var showSearchBarForSingleMovie = function(event) {
+  $("#search-bar").show();
+  $(".button").removeClass("btn-search");
+  $(".button").addClass("btn-single-search");
+},
+
+var buildMovieView = function(event) {
+  
 }
 
 $(document).ready(function() {
 
-  $('#rental-list').click(buildMovieList);
-  $('#btn-search').click(buildMovieListTMDb);
+  $('#rental-list').click( buildMovieList );
+  $('.btn-search').click( buildMovieListTMDb );
+  $('#new-movies-list').click( toggleSearchBar);
+  $('#rental-single').click( showSearchBarForSingleMovie );
+  $('.btn-single-search').click( buildMovieView );
 });
