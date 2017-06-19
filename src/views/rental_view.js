@@ -11,10 +11,9 @@ var RentalView = Backbone.View.extend({
 
   render: function() {
     var compiledTemplate = this.template( this.model.toJSON() );
-    this.$el.html(compiledTemplate);
+    this.$('#rentals').html(compiledTemplate);
 
-    // re-attach DOM event listners
-    this.delegateEvents();
+    // this.delegateEvents();
 
     return this;
   },
@@ -28,22 +27,10 @@ var RentalView = Backbone.View.extend({
     var movieTitle = this.$('#rental-movie-title').val();
     var customerId = this.$('#rental-customer-id').val();
     this.model.set('customer_id', customerId);
-    this.model.cumstomUrl(movieTitle);
+    this.model.checkoutUrl(movieTitle);
     this.model.save();
+    this.$("#rentals").hide();
   }
-
-  // addToLib: function(movieView){
-  //   // console.log("made it to add to lib function");
-  //   var title = movieView.model.get("title")
-  //   var inventory = this.$('#inventory').val();
-  //   movieView.model.set('inventory', inventory);
-  //   this.model.create(movieView.model, {
-  //     error: function(reponse) { alert("Error - Movie was not added to library") },
-  //     success: function(response) { alert(title + ': was added successfully!' + "\n" + 'Inventory: ' + inventory) }
-  //   });
-  // }
-
-
 
 
 

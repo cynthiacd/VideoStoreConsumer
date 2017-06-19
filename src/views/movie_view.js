@@ -33,10 +33,6 @@ var MovieView = Backbone.View.extend({
     this.trigger('addToLib', this);
   }
 
-  // onCheckout: {
-  //   this.trigger()
-  // }
-
 });
 
 export default MovieView;

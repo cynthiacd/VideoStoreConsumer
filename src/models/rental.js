@@ -14,14 +14,17 @@ var Rental = Backbone.Model.extend({
       dueDate.setDate(dueDate.getDate() + 3);
       this.set('due_date', dueDate);
     }
-    console.log(this.get("due_date"));
-    console.log("Rental Initialized: " + this.get("title") + this.get("customer_id"));
   },
 
   url: 'http://localhost:3000/rentals/',
 
-  cumstomUrl: function(movieTitle){
+  checkoutUrl: function(movieTitle){
     this.url = this.url + movieTitle + "/check-out";
+    return this;
+  },
+
+  checkinUrl: function(movieTitle){
+    this.url = this.url + movieTitle + "/return";
     return this;
   }
 

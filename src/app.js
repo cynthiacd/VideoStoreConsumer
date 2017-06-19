@@ -13,6 +13,9 @@ import RentalView from './views/rental_view';
 
 var buildMovieList = function(event){
   $("#search-bar").hide();
+  $("#rentals").hide();
+  $("#movie-list").show();
+
 
   console.log("clicked on the button");
 
@@ -31,6 +34,9 @@ var buildMovieList = function(event){
 };
 
 var buildMovieListTMDb = function(event) {
+  $("#rentals").hide();
+  $("#movie-list").show();
+
   console.log("Getting movies from TMDb!");
   var searchText = $('#search').val();
   // console.log(searchText);
@@ -50,6 +56,7 @@ var buildMovieListTMDb = function(event) {
 };
 
 var toggleSearchBar = function(event) {
+  $("#rentals").hide();
   event.stopPropagation();
   $("#search-bar").show();
 };
@@ -63,7 +70,12 @@ var toggleSearchBar = function(event) {
 // };
 
 var checkoutMovie = function(event) {
+  event.stopPropagation();
 
+  console.log("In checkoutMovie");
+  $("#search-bar").hide();
+  $("#movie-list").hide();
+  $("#rentals").show();
   console.log("inside checkoutMovie");
   var rental = new Rental();
   var rentalView = new RentalView({
@@ -71,7 +83,15 @@ var checkoutMovie = function(event) {
     templateCard: _.template( $('#rental-checkout-template').html() ),
     el: 'main'
   });
-}
+};
+
+var checkinMovie = function(event) {
+  console.log("inside checkinMovie");
+  $("#search-bar").hide();
+  $("#movie-list").hide();
+  $("#rentals").show();
+
+};
 // var buildMovieView = function(event) {
 //   console.log("in the single movie view");
 //   var searchText = $('.btn-single-search').val();
@@ -95,5 +115,7 @@ $(document).ready(function() {
   $('.btn-search').click( buildMovieListTMDb );
   $('#new-movies-list').click( toggleSearchBar);
   $('#rental-checkout').click( checkoutMovie );
+  $('#rental-checkin').click( checkinMovie );
+
   // $('#rental-single').click( showSearchBarForSingleMovie );
 });
