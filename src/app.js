@@ -48,7 +48,7 @@ var buildMovieListTMDb = function(event) {
 
 var toggleSearchBar = function(event) {
   event.stopPropagation();
-  $("#search-bar").toggle();
+  $("#search-bar").show();
 };
 
 var showSearchBarForSingleMovie = function(event) {
