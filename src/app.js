@@ -55,11 +55,11 @@ var showSearchBarForSingleMovie = function(event) {
   $("#search-bar").show();
   $(".button").removeClass("btn-search");
   $(".button").addClass("btn-single-search");
-},
+};
 
 var buildMovieView = function(event) {
-  
-}
+
+};
 
 $(document).ready(function() {
 
