@@ -5,7 +5,9 @@ import $ from 'jquery';
 import _ from 'underscore';
 
 import MovieList from './collections/movie_list';
+import Movie from './models/movie';
 import MovieListView from './views/movie_list_view';
+import MovieView from './views/movie_view';
 
 
 var buildMovieList = function(event){
@@ -48,18 +50,31 @@ var buildMovieListTMDb = function(event) {
 
 var toggleSearchBar = function(event) {
   event.stopPropagation();
-  $("#search-bar").toggle();
+  $("#search-bar").show();
+  $(".button").removeClass("btn-single-search");
+  $(".button").addClass("btn-search");
 };
 
 var showSearchBarForSingleMovie = function(event) {
   $("#search-bar").show();
   $(".button").removeClass("btn-search");
   $(".button").addClass("btn-single-search");
-},
+};
 
 var buildMovieView = function(event) {
-  
-}
+  var searchText = $('.btn-single-search').val();
+  var movie = new Movie({
+    url: "http://localhost:3000/movies/" + searchText
+    // searchUrl: this.url + searchText
+  });
+    console.log(this.url);
+
+  movie.fetch();
+  // var movieView = new MovieView{
+  //   model: movie,
+  //
+  // }
+};
 
 $(document).ready(function() {
 
