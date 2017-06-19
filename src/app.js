@@ -59,28 +59,31 @@ var showSearchBarForSingleMovie = function(event) {
   $("#search-bar").show();
   $(".button").removeClass("btn-search");
   $(".button").addClass("btn-single-search");
+  $('.btn-single-search').click( buildMovieView );
+
 };
 
-var buildMovieView = function(event) {
-  var searchText = $('.btn-single-search').val();
-  var movie = new Movie({
-    url: "http://localhost:3000/movies/" + searchText
-    // searchUrl: this.url + searchText
-  });
-    console.log(this.url);
-
-  movie.fetch();
-  // var movieView = new MovieView{
-  //   model: movie,
-  //
-  // }
-};
+// var buildMovieView = function(event) {
+//   console.log("in the single movie view");
+//   var searchText = $('.btn-single-search').val();
+//   var movie = new Movie({
+//     url: "http://localhost:3000/movies/" + searchText
+//     // searchUrl: this.url + searchText
+//   });
+//     console.log(this.url);
+//
+//   movie.fetch();
+//   // var movieView = new MovieView{
+//   //   model: movie,
+//   //
+//   // }
+//
+// };
 
 $(document).ready(function() {
 
   $('#rental-list').click( buildMovieList );
   $('.btn-search').click( buildMovieListTMDb );
   $('#new-movies-list').click( toggleSearchBar);
-  $('#rental-single').click( showSearchBarForSingleMovie );
-  $('.btn-single-search').click( buildMovieView );
+  // $('#rental-single').click( showSearchBarForSingleMovie );
 });
