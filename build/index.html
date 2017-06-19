@@ -14,8 +14,10 @@
 
     <main class="row">
       <button class="button" id="rental-list">Get Rails DB Movies</button>
-      <button class="button" id="rental-single">Find One Movie from DB</button>
+      <!-- <button class="button" id="rental-single">Find One Movie from DB</button> -->
       <button class="button" id="new-movies-list">Search For New Movies</button>
+      <button class="button" id="rental-checkout">Checkout Movie</button>
+      <button class="button" id="rental-checkin">Checkin Movie</button>
 
       <section class="row" id="search-bar">
         <label>
@@ -50,7 +52,19 @@
       </div>
     </script>
 
-    <script >
+    <script id="rental-checkout-template" type="text/template">
+      <section class="row" id="rental">
+        <label>
+          Movie Title
+          <input type="text" name="rental-movie-title" id="rental-movie-title" placeholder="Search..">
+        </label>
+        <label>
+          Customer ID
+          <input type="text" name="rental-customer-id" id="rental-customer-id" placeholder="Search..">
+        </label>
+        <button class="button btn-checkout">Checkout</button>
+      </section>
+
     </script>
 
     <script src="/app.bundle.js"></script>

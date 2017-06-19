@@ -8,7 +8,8 @@ import MovieList from './collections/movie_list';
 import Movie from './models/movie';
 import MovieListView from './views/movie_list_view';
 import MovieView from './views/movie_view';
-
+import Rental from './models/rental';
+import RentalView from './views/rental_view';
 
 var buildMovieList = function(event){
   $("#search-bar").hide();
@@ -51,18 +52,26 @@ var buildMovieListTMDb = function(event) {
 var toggleSearchBar = function(event) {
   event.stopPropagation();
   $("#search-bar").show();
-  $(".button").removeClass("btn-single-search");
-  $(".button").addClass("btn-search");
 };
 
-var showSearchBarForSingleMovie = function(event) {
-  $("#search-bar").show();
-  $(".button").removeClass("btn-search");
-  $(".button").addClass("btn-single-search");
-  $('.btn-single-search').click( buildMovieView );
+// var showSearchBarForSingleMovie = function(event) {
+//   // $("#search-bar").show();
+//   // $(".button").removeClass("btn-search");
+//   // $(".button").addClass("btn-single-search");
+//   // $('.btn-single-search').click( buildMovieView );
+//
+// };
 
-};
+var checkoutMovie = function(event) {
 
+  console.log("inside checkoutMovie");
+  var rental = new Rental();
+  var rentalView = new RentalView({
+    model: rental,
+    templateCard: _.template( $('#rental-checkout-template').html() ),
+    el: 'main'
+  });
+}
 // var buildMovieView = function(event) {
 //   console.log("in the single movie view");
 //   var searchText = $('.btn-single-search').val();
@@ -85,5 +94,6 @@ $(document).ready(function() {
   $('#rental-list').click( buildMovieList );
   $('.btn-search').click( buildMovieListTMDb );
   $('#new-movies-list').click( toggleSearchBar);
+  $('#rental-checkout').click( checkoutMovie );
   // $('#rental-single').click( showSearchBarForSingleMovie );
 });
