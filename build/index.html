@@ -35,8 +35,8 @@
 
     <script id="movie-card-template" type="text/template">
       <img alt="movie image" class="columns large-2" src=<%- image_url %> >
-      <div class="columns large-9" id="movie-text">
-        <h4>Title: <%- title %></h4>
+      <div class="columns large-10" id="movie-text">
+        <h4><%- title %></h4>
         <p>Summary: <%- overview %></p>
         <p>Release Date: <%- release_date %></p>
 
@@ -48,8 +48,9 @@
           <button class="button btn-add-lib">Add to Library</button>
         <% } else { %>
           <p>Inventory: <%- inventory%></p>
+          <p>Available Inventory: <%- available_inventory %></p>
         <% } %>
-        <button class="button btn-rental">Check Out This Movie</button>
+        <!-- <button class="button btn-rental">Check Out This Movie</button> -->
       </div>
     </script>
 
