@@ -28,8 +28,13 @@ var RentalView = Backbone.View.extend({
     var customerId = this.$('#rental-customer-id').val();
     this.model.set('customer_id', customerId);
     this.model.checkoutUrl(movieTitle);
-    this.model.save();
-    this.$("#rentals").hide();
+    // this.model.save();
+    this.model.save({},{
+      error: function(reponse) { alert("Error - Movie was not added to library") },
+      success: function(response) { alert("Movie Checked Out!") }
+    });
+    this.model.url = 'http://localhost:3000/rentals/';
+
   }
 
 

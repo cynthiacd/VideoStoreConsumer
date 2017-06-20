@@ -61,28 +61,12 @@ var toggleSearchBar = function(event) {
   $("#search-bar").show();
 };
 
-// var showSearchBarForSingleMovie = function(event) {
-//   // $("#search-bar").show();
-//   // $(".button").removeClass("btn-search");
-//   // $(".button").addClass("btn-single-search");
-//   // $('.btn-single-search').click( buildMovieView );
-//
-// };
-
 var checkoutMovie = function(event) {
   event.stopPropagation();
-
-  console.log("In checkoutMovie");
   $("#search-bar").hide();
   $("#movie-list").hide();
   $("#rentals").show();
   console.log("inside checkoutMovie");
-  var rental = new Rental();
-  var rentalView = new RentalView({
-    model: rental,
-    templateCard: _.template( $('#rental-checkout-template').html() ),
-    el: 'main'
-  });
 };
 
 var checkinMovie = function(event) {
@@ -92,22 +76,6 @@ var checkinMovie = function(event) {
   $("#rentals").show();
 
 };
-// var buildMovieView = function(event) {
-//   console.log("in the single movie view");
-//   var searchText = $('.btn-single-search').val();
-//   var movie = new Movie({
-//     url: "http://localhost:3000/movies/" + searchText
-//     // searchUrl: this.url + searchText
-//   });
-//     console.log(this.url);
-//
-//   movie.fetch();
-//   // var movieView = new MovieView{
-//   //   model: movie,
-//   //
-//   // }
-//
-// };
 
 $(document).ready(function() {
 
@@ -116,6 +84,11 @@ $(document).ready(function() {
   $('#new-movies-list').click( toggleSearchBar);
   $('#rental-checkout').click( checkoutMovie );
   $('#rental-checkin').click( checkinMovie );
-
-  // $('#rental-single').click( showSearchBarForSingleMovie );
+  $("#rentals").hide();
+  var rental = new Rental();
+  var rentalView = new RentalView({
+    model: rental,
+    templateCard: _.template( $('#rental-checkout-template').html() ),
+    el: 'main'
+  });
 });
