@@ -14,9 +14,10 @@
 
     <main class="row">
       <button class="button" id="rental-list">Get Rails DB Movies</button>
-      <!-- <button class="button" id="rental-single">Find One Movie from DB</button> -->
       <button class="button" id="new-movies-list">Search For New Movies</button>
       <button class="button" id="rental-movie">Rental</button>
+      <button class="button" id="rental-overdue">Overdue Movies</button>
+
 
       <section class="row" id="search-bar">
         <label>
@@ -28,6 +29,21 @@
 
       <section id="movie-list" class="row"></section>
       <section id="rentals" class="row"></section>
+
+      <section id="overdue-rentals" class="row">
+        <table id="overdues" class="row" >
+          <tr>
+            <th>Movie</th>
+            <th>Customer</th>
+            <th>Customer ID</th>
+            <th>Checkout Date</th>
+            <th>Due Date</th>
+          </tr>
+          <tbody id="overdue-info">
+
+          </tbody>
+        </table>
+      </section>
     </main>
 
     <!-- Templates -->
@@ -67,6 +83,15 @@
         <button class="button btn-checkin">Checkin</button>
 
       </section>
+    </script>
+
+    <script id="overdue-table" type="text/template">
+      <td><%- title %></td>
+      <td><%- name %></td>
+      <td><%- customer_id %></td>
+      <td><%- checkout_date %></td>
+      <td><%- due_date %></td>
+      <!-- <td><%- postal_code %></td> -->
     </script>
 
     <script src="/app.bundle.js"></script>

@@ -9,13 +9,15 @@ import Movie from './models/movie';
 import MovieListView from './views/movie_list_view';
 import MovieView from './views/movie_view';
 import Rental from './models/rental';
+import RentalList from './collections/rental_list';
 import RentalView from './views/rental_view';
+import RentalListView from './views/rental_list_view';
 
 var buildMovieList = function(event){
   $("#search-bar").hide();
   $("#rentals").hide();
+  $("#overdue-rentals").hide();
   $("#movie-list").show();
-
 
   console.log("clicked on the button");
 
@@ -35,6 +37,7 @@ var buildMovieList = function(event){
 
 var buildMovieListTMDb = function(event) {
   $("#rentals").hide();
+  $("#overdue-rentals").hide();
   $("#movie-list").show();
 
   console.log("Getting movies from TMDb!");
@@ -58,8 +61,10 @@ var buildMovieListTMDb = function(event) {
 };
 
 var toggleSearchBar = function(event) {
-  $("#rentals").hide();
   event.stopPropagation();
+
+  $("#rentals").hide();
+  $("#overdue-rentals").hide();
   $("#search-bar").show();
 };
 
@@ -67,11 +72,43 @@ var rentalMovie = function(event) {
   event.stopPropagation();
   $("#search-bar").hide();
   $("#movie-list").hide();
+  $("#overdue-rentals").hide();
+
   $("#rentals").show();
   console.log("inside checkoutMovie");
 };
 
+var checkinMovie = function(event) {
+  event.stopPropagation();
+  console.log("inside checkinMovie");
+  $("#search-bar").hide();
+  $("#movie-list").hide();
+  $("#overdue-rentals").hide();
 
+  $("#rentals").show();
+};
+
+var buitldOverdueMovieList = function(event) {
+  $("#search-bar").hide();
+  $("#rentals").hide();
+  $("#movie-list").hide();
+
+  console.log("Getting overdue movies");
+
+  var overdueRentals = new RentalList ();
+  overdueRentals.overdueUrl();
+  overdueRentals.fetch(
+    { error: function(model, response) { alert("Server Error - Try Again Later") },
+      success: function(model, response) { console.log( "API success - got overdue rental customers" ) }
+    }
+  );
+
+  var rentalListView = new RentalListView({
+    model: overdueRentals,
+    templateInfo: _.template( $("#overdue-table").html() ),
+  });
+  $("#overdue-rentals").show();
+};
 
 $(document).ready(function() {
 
@@ -79,6 +116,8 @@ $(document).ready(function() {
   $('.btn-search').click( buildMovieListTMDb );
   $('#new-movies-list').click( toggleSearchBar);
   $('#rental-movie').click( rentalMovie );
+  $('#rental-overdue').click( buitldOverdueMovieList );
+
   $("#rentals").hide();
   var rental = new Rental();
   var rentalView = new RentalView({
