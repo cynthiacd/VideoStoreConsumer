@@ -13,8 +13,6 @@ var RentalView = Backbone.View.extend({
     var compiledTemplate = this.template( this.model.toJSON() );
     this.$('#rentals').html(compiledTemplate);
 
-    // this.delegateEvents();
-
     return this;
   },
 
@@ -28,17 +26,25 @@ var RentalView = Backbone.View.extend({
     var customerId = this.$('#rental-customer-id').val();
     this.model.set('customer_id', customerId);
     this.model.checkoutUrl(movieTitle);
-    // this.model.save();
-    this.model.save({},{
-      error: function(reponse) { alert("Error - Movie was not added to library") },
-      success: function(response) { alert("Movie Checked Out!") }
+
+    var self = this;
+    this.model.save({}, {
+      success: function(model, response){
+        // console.log(response.rental);
+
+        alert("Success - Movie Checked Out! \nCustomer_id: "
+        + customerId
+        + "\nMovie: " + movieTitle
+        + "\nDue: " + response.rental.due_date );
+       },
+
+      error: function(model, response){
+        console.log(response);
+        alert( "Something went wrong:\n" + response.responseText)
+      }
     });
     this.model.url = 'http://localhost:3000/rentals/';
-
   }
-
-
-
 });
 
 export default RentalView;

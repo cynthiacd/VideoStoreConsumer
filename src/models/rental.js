@@ -27,7 +27,6 @@ var Rental = Backbone.Model.extend({
     this.url = this.url + movieTitle + "/return";
     return this;
   }
-
 });
 
 export default Rental;
