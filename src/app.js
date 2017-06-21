@@ -63,7 +63,7 @@ var toggleSearchBar = function(event) {
   $("#search-bar").show();
 };
 
-var checkoutMovie = function(event) {
+var rentalMovie = function(event) {
   event.stopPropagation();
   $("#search-bar").hide();
   $("#movie-list").hide();
@@ -71,21 +71,14 @@ var checkoutMovie = function(event) {
   console.log("inside checkoutMovie");
 };
 
-var checkinMovie = function(event) {
-  event.stopPropagation();
-  console.log("inside checkinMovie");
-  $("#search-bar").hide();
-  $("#movie-list").hide();
-  $("#rentals").show();
-};
+
 
 $(document).ready(function() {
 
   $('#rental-list').click( buildMovieList );
   $('.btn-search').click( buildMovieListTMDb );
   $('#new-movies-list').click( toggleSearchBar);
-  $('#rental-checkout').click( checkoutMovie );
-  $('#rental-checkin').click( checkinMovie );
+  $('#rental-movie').click( rentalMovie );
   $("#rentals").hide();
   var rental = new Rental();
   var rentalView = new RentalView({

@@ -45,7 +45,7 @@ var MovieListView = Backbone.View.extend({
     });
 
     this.movieViews.push(movieView);
-
+  }
 
 });
 
