@@ -21,7 +21,7 @@ var RentalView = Backbone.View.extend({
 
   renderForm: function() {
     var compiledTemplate = this.templateForm( this.model.toJSON() );
-    this.$('#rentals').html(compiledTemplate);
+    this.$('#rental-form').html(compiledTemplate);
     return this;
   },
 
@@ -80,7 +80,6 @@ var RentalView = Backbone.View.extend({
       }
     });
     this.model.url = 'http://localhost:3000/rentals/';
-
   }
 });
 
