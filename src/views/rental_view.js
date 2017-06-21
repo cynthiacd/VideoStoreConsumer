@@ -29,19 +29,19 @@ var RentalView = Backbone.View.extend({
 
     var self = this;
     this.model.save({}, {
-      success: function(model, response){
-        // console.log(response.rental);
-
-        alert("Success - Movie Checked Out! \nCustomer_id: "
-        + customerId
-        + "\nMovie: " + movieTitle
-        + "\nDue: " + response.rental.due_date );
-       },
-
-      error: function(model, response){
-        console.log(response);
-        alert( "Something went wrong:\n" + response.responseText)
-      }
+      // success: function(model, response){
+      //   // console.log(response.rental);
+      //
+      //   alert("Success - Movie Checked Out! \nCustomer_id: "
+      //   + customerId
+      //   + "\nMovie: " + movieTitle
+      //   + "\nDue: " + response.rental.due_date );
+      //  },
+      //
+      // error: function(model, response){
+      //   console.log(response);
+      //   alert( "Something went wrong:\n" + response.responseText)
+      // }
     });
     this.model.url = 'http://localhost:3000/rentals/';
   }
