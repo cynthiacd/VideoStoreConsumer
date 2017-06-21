@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 import Backbone from 'backbone';
 import RentalView from './rental_view';
 import Rental from '../models/rental';
@@ -23,12 +25,11 @@ var RentalListView = Backbone.View.extend({
   render: function(){
     console.log("rendering the Rental List View");
 
-    // this.$('#rental-info').empty();
+    this.$('#overdues').empty();
     var that = this;
     console.log(this.rentalViews);
     this.rentalViews.forEach(function(rentalView){
-      console.log(rentalView);
-      that.$('#rental-info').append(rentalView.$el);
+      $('#overdues').append(rentalView.$el);
     });
 
     return this;
@@ -37,8 +38,7 @@ var RentalListView = Backbone.View.extend({
   addRental: function(rawRental){
     var rentalView = new RentalView({
       model: rawRental,
-      templateInfo: this.templateInfo,
-      el: "#rental-info"
+      templateInfo: this.templateInfo
     });
 
     this.rentalViews.push(rentalView);

@@ -31,7 +31,7 @@
       <section id="rentals" class="row"></section>
 
       <section id="overdue-rentals" class="row">
-        <table class="row">
+        <table class="row" id="overdues">
           <tr>
             <th>Movie</th>
             <th>Customer</th>
@@ -39,7 +39,10 @@
             <th>Checkout Date</th>
             <th>Due Date</th>
           </tr>
-          <tr id="rental-info"></tr>
+          <tbody id="overdue-info">
+
+          </tbody>
+  
         </table>
 
       </section>
@@ -83,14 +86,12 @@
     </script>
 
     <script id="overdue-table" type="text/template">
-      <!-- <section class="row" id="customers"> -->
       <td><%- title %></td>
       <td><%- name %></td>
       <td><%- customer_id %></td>
       <td><%- checkout_date %></td>
       <td><%- due_date %></td>
       <!-- <td><%- postal_code %></td> -->
-      <!-- </section> -->
     </script>
 
     <script src="/app.bundle.js"></script>

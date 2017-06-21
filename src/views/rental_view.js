@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 
 var RentalView = Backbone.View.extend({
+  tagName: "tr",
 
   initialize: function(params) {
     console.log(params);
