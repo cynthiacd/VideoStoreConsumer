@@ -40,16 +40,15 @@ div {
 }
 
 li {
-  border: solid;
+  /*border: solid;*/
+  background-color: lightgrey;
   /*height: 27em;*/
   padding: 2%;
   margin: 3%
 }
 
 #movie-text {
-  /*display: inline-block;*/
-  /*min-height: 95%;*/
-  /*background-color: lightblue;*/
+  /*border: solid;*/
 }
 
 .columns {

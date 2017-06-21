@@ -2,7 +2,7 @@ import Backbone from 'backbone';
 
 var MovieView = Backbone.View.extend({
   tagName: 'li',
-  className: 'row movieInfo',
+  className: 'row movie-info',
 
   initialize: function(params) {
     this.template = params.template;

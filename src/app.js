@@ -70,6 +70,7 @@ var rentalMovie = function(event) {
   event.stopPropagation();
   $("#search-bar").hide();
   $("#movie-list").hide();
+  $("#rentals").hide();
 
   $("#rental-form").show();
   console.log("inside checkoutMovie");

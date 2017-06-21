@@ -16,6 +16,7 @@ var RentalView = Backbone.View.extend({
     console.log("in render of rental view");
     var compiledTemplate = this.templateInfo ( this.model.toJSON() );
     this.$el.html(compiledTemplate);
+    this.delegateEvents();
     return this;
   },
 

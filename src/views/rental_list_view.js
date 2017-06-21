@@ -1,4 +1,4 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 
 import Backbone from 'backbone';
 import RentalView from './rental_view';
@@ -19,7 +19,7 @@ var RentalListView = Backbone.View.extend({
 
     this.listenTo(this.model, "add", this.addRental);
     this.listenTo(this.model, "update", this.render);
-    // this.listenTo(this.model, "remove", this.removeMovie);
+    this.listenTo(this.model, "remove", this.removeRental);
   },
 
   render: function(){
@@ -35,13 +35,23 @@ var RentalListView = Backbone.View.extend({
     return this;
   },
 
-  addRental: function(rawRental){
+  addRental: function(rawRental) {
     var rentalView = new RentalView({
       model: rawRental,
       templateInfo: this.templateInfo
     });
 
     this.rentalViews.push(rentalView);
+  },
+
+  removeRental: function(movie) {
+    var filteredList = [];
+    this.rentalViews.forEach(function(rentalView){
+      if (rentalView.model != movie) {
+        filteredList.push(movieView);
+      }
+    });
+    this.rentalViews = filteredList;
   }
 
 });
