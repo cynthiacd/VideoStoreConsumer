@@ -5,6 +5,7 @@ import Movie from '../models/movie';
 var MovieListView = Backbone.View.extend({
 
   initialize: function(params) {
+    // console.log(this.model);
     this.template = params.templateCard;
 
     this.movieViews = [];

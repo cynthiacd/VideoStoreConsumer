@@ -2,17 +2,25 @@ import Backbone from 'backbone';
 
 var RentalView = Backbone.View.extend({
 
-
   initialize: function(params) {
-    this.template = params.templateCard;
-    console.log(this.template);
-    this.render();
+    console.log(params);
+    this.templateInfo = params.templateInfo;
+    this.templateForm = params.templateCard;
+
+    if (params.templateCard) { this.renderForm(); }
+    else { this.render(); }
   },
 
   render: function() {
-    var compiledTemplate = this.template( this.model.toJSON() );
-    this.$('#rentals').html(compiledTemplate);
+    console.log("in render of rental view");
+    var compiledTemplate = this.templateInfo ( this.model.toJSON() );
+    this.$el.html(compiledTemplate);
+    return this;
+  },
 
+  renderForm: function() {
+    var compiledTemplate = this.templateForm( this.model.toJSON() );
+    this.$('#rentals').html(compiledTemplate);
     return this;
   },
 

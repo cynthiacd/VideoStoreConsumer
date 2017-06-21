@@ -9,13 +9,14 @@ import Movie from './models/movie';
 import MovieListView from './views/movie_list_view';
 import MovieView from './views/movie_view';
 import Rental from './models/rental';
+import RentalList from './collections/rental_list';
 import RentalView from './views/rental_view';
+import RentalListView from './views/rental_list_view';
 
 var buildMovieList = function(event){
   $("#search-bar").hide();
   $("#rentals").hide();
   $("#movie-list").show();
-
 
   console.log("clicked on the button");
 
@@ -88,7 +89,7 @@ var buitldOverdueMovieList = function(event) {
   console.log("Getting overdue movies");
 
   // console.log(searchText);
-  var overdueRentals = new Rental ();
+  var overdueRentals = new RentalList ();
   overdueRentals.overdueUrl();
   overdueRentals.fetch(
     { error: function(model, response) { alert("Server Error - Try Again Later") },
@@ -96,13 +97,12 @@ var buitldOverdueMovieList = function(event) {
     }
   );
 
-  // movieList.url = 'http://localhost:3000/movies';
+  var rentalListView = new RentalListView({
+    model: overdueRentals,
+    templateInfo: _.template( $("#overdue-table").html() )
+  });
 
-  // var movieListView = new MovieListView({
-  //   model: movieList,
-  //   templateCard: _.template( $('#movie-card-template').html() ),
-  //   el: 'main'
-  // });
+  $("#overdue-rentals").show();
 };
 
 $(document).ready(function() {
@@ -112,7 +112,6 @@ $(document).ready(function() {
   $('#new-movies-list').click( toggleSearchBar);
   $('#rental-checkout').click( checkoutMovie );
   $('#rental-overdue').click( buitldOverdueMovieList );
-
 
   $("#rentals").hide();
   var rental = new Rental();
