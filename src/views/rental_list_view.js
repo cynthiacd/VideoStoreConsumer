@@ -25,11 +25,11 @@ var RentalListView = Backbone.View.extend({
   render: function(){
     console.log("rendering the Rental List View");
 
-    this.$('#overdues').empty();
+    this.$('#overdue-info').empty();
     var that = this;
     console.log(this.rentalViews);
     this.rentalViews.forEach(function(rentalView){
-      $('#overdues').append(rentalView.$el);
+      that.$('#overdue-info').append(rentalView.$el);
     });
 
     return this;
