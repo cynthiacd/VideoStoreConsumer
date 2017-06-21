@@ -10,8 +10,7 @@ var Movie = Backbone.Model.extend({
     inventory: "integer"
   },
 
-
-
+  url: 'http://localhost:3000/movies',
 
   initialize: function(params) {
     console.log("Movie Initialized: " + this.get("title"));

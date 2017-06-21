@@ -70,11 +70,11 @@ var checkoutMovie = function(event) {
 };
 
 var checkinMovie = function(event) {
+  event.stopPropagation();
   console.log("inside checkinMovie");
   $("#search-bar").hide();
   $("#movie-list").hide();
   $("#rentals").show();
-
 };
 
 $(document).ready(function() {
