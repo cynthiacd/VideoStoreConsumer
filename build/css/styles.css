@@ -57,8 +57,6 @@ li {
 
 img {
   margin-top: 0%;
-  /*margin-left: 2%;*/
-  /*border-top: solid;*/
 }
 
 .button {
@@ -86,4 +84,8 @@ li {
 
 th {
   text-align: left;
+}
+
+h2 {
+  border-bottom: solid;
 }

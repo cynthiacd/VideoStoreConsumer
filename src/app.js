@@ -51,7 +51,6 @@ var buildMovieListTMDb = function(event) {
     }
   );
 
-  // movieList.url = 'http://localhost:3000/movies';
   var movieListView = new MovieListView({
     model: movieList,
     templateCard: _.template( $('#movie-card-template').html() ),
