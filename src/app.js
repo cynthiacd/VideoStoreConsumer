@@ -14,6 +14,7 @@ import RentalView from './views/rental_view';
 import RentalListView from './views/rental_list_view';
 
 var buildMovieList = function(event){
+  $("#rentals").hide();
   $("#search-bar").hide();
   $("#rental-form").hide();
   $("#movie-list").show();
@@ -35,6 +36,7 @@ var buildMovieList = function(event){
 };
 
 var buildMovieListTMDb = function(event) {
+  $("#rentals").hide();
   $("#rentals-form").hide();
   $("#movie-list").show();
 
@@ -50,7 +52,6 @@ var buildMovieListTMDb = function(event) {
   );
 
   // movieList.url = 'http://localhost:3000/movies';
-
   var movieListView = new MovieListView({
     model: movieList,
     templateCard: _.template( $('#movie-card-template').html() ),
@@ -58,9 +59,9 @@ var buildMovieListTMDb = function(event) {
   });
 };
 
-var toggleSearchBar = function(event) {
+var showSearchBar = function(event) {
   event.stopPropagation();
-
+  $("#rentals").hide();
   $("#rental-form").hide();
   $("#search-bar").show();
 };
@@ -73,14 +74,6 @@ var rentalMovie = function(event) {
   $("#rental-form").show();
   console.log("inside checkoutMovie");
 };
-
-// var checkinMovie = function(event) {
-//   event.stopPropagation();
-//   console.log("inside checkinMovie");
-//   $("#search-bar").hide();
-//   $("#movie-list").hide();
-//   $("#rental-form").show();
-// };
 
 var buildOverdueRentalsList = function(event) {
   $("#search-bar").hide();
@@ -128,10 +121,9 @@ var buildRentalsList = function(event) {
 };
 
 $(document).ready(function() {
-
   $('#rental-list').click( buildMovieList );
   $('.btn-search').click( buildMovieListTMDb );
-  $('#new-movies-list').click( toggleSearchBar);
+  $('#new-movies-list').click( showSearchBar);
   $('#rental-movie').click( rentalMovie );
   $('#rental-overdue').click( buildOverdueRentalsList );
   $('#rental-all').click( buildRentalsList)

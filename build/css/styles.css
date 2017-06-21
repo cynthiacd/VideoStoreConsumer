@@ -84,3 +84,7 @@ li {
 #rentals {
   display: none;
 }
+
+th {
+  text-align: left;
+}
