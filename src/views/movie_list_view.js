@@ -15,8 +15,6 @@ var MovieListView = Backbone.View.extend({
 
     this.listenTo(this.model, "add", this.addMovie);
     this.listenTo(this.model, "update", this.render);
-
-
     // this.listenTo(this.model, "remove", this.removeMovie);
   },
 
@@ -24,16 +22,12 @@ var MovieListView = Backbone.View.extend({
     console.log("rendering the Movie List View");
 
     this.$('#movie-list').empty();
-
     var that = this;
 
     this.movieViews.forEach(function(movieView){
       that.$('#movie-list').append(movieView.$el);
-
       that.listenTo( movieView, "addToLib", that.addToLib );
     });
-
-
 
     return this;
   },

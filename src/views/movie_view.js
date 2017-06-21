@@ -38,14 +38,7 @@ var MovieView = Backbone.View.extend({
       error: function(model, response) { alert("Error - Movie was not added to library\n" + response.responseText ); },
       success: function(model, response) { alert(title + ': was added successfully!' + "\n" + 'Inventory: ' + inventory); }
     });
-
   }
-
-
-
-
-
-
 
 });
 
