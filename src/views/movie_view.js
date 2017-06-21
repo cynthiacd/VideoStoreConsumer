@@ -29,9 +29,11 @@ var MovieView = Backbone.View.extend({
     'click .btn-checkout': 'onCheckout'
   },
 
-  addMovie: function(event) {
-    this.trigger('addToLib', this);
-  }
+  // addMovie: function(event) {
+  //   var inventory = this.$('#inventory').val();
+  //   this.model.set('inventory', inventory);
+  //   this.trigger('addToLib', this);
+  // }
 
 });
 
