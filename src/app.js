@@ -105,7 +105,7 @@ var buitldOverdueMovieList = function(event) {
 
   var rentalListView = new RentalListView({
     model: overdueRentals,
-    templateInfo: _.template( $("#overdue-table").html() )
+    templateInfo: _.template( $("#overdue-table").html() ),
   });
   $("#overdue-rentals").show();
 };
