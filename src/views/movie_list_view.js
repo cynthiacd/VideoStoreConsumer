@@ -1,6 +1,6 @@
 import Backbone from 'backbone';
 import MovieView from './movie_view';
-import Move from '../models/movie';
+import Movie from '../models/movie';
 
 var MovieListView = Backbone.View.extend({
 

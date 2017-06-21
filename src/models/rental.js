@@ -26,6 +26,11 @@ var Rental = Backbone.Model.extend({
   checkinUrl: function(movieTitle){
     this.url = this.url + movieTitle + "/return";
     return this;
+  },
+
+  overdueUrl: function() {
+    this.url = this.url + "overdue";
+    return this;
   }
 });
 

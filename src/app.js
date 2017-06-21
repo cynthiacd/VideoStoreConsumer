@@ -79,13 +79,41 @@ var checkinMovie = function(event) {
   $("#rentals").show();
 };
 
+var buitldOverdueMovieList = function(event) {
+  console.log("inside overdue movie list");
+
+  $("#rentals").hide();
+  $("#movie-list").show();
+
+  console.log("Getting overdue movies");
+
+  // console.log(searchText);
+  var overdueRentals = new Rental ();
+  overdueRentals.overdueUrl();
+  overdueRentals.fetch(
+    { error: function(model, response) { alert("Server Error - Try Again Later") },
+      success: function(model, response) { console.log( "API success - got overdue rental customers" ) }
+    }
+  );
+
+  // movieList.url = 'http://localhost:3000/movies';
+
+  // var movieListView = new MovieListView({
+  //   model: movieList,
+  //   templateCard: _.template( $('#movie-card-template').html() ),
+  //   el: 'main'
+  // });
+};
+
 $(document).ready(function() {
 
   $('#rental-list').click( buildMovieList );
   $('.btn-search').click( buildMovieListTMDb );
   $('#new-movies-list').click( toggleSearchBar);
   $('#rental-checkout').click( checkoutMovie );
-  $('#rental-checkin').click( checkinMovie );
+  $('#rental-overdue').click( buitldOverdueMovieList );
+
+
   $("#rentals").hide();
   var rental = new Rental();
   var rentalView = new RentalView({
