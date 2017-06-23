@@ -34,10 +34,44 @@ var RentalView = Backbone.View.extend({
 
   events: {
     'click .btn-checkout': 'onCheckout',
-    'click .btn-checkin': 'onReturn'
+    // 'click .btn-checkin': 'onReturn',
+    'click .btn-checkin-from-list': 'onCheckInFromList'
   },
 
-  onCheckout: function(){
+  onCheckInFromList: function(event) {
+    // console.log(this.model);
+
+    var movieTitle = this.model.get("title");
+    console.log(movieTitle);
+    var customerId = this.model.get("customer_id");
+    console.log(customerId);
+
+    this.model.checkinUrl(movieTitle);
+    console.log(this.model.url);
+
+    // var self = this;
+    // this.model.save({}, {
+    //   success: function(model, response){
+    //     // console.log(response.rental);
+    //     alert("Success - Movie Checked Out! \nCustomer_id: "
+    //     + customerId
+    //     + "\nMovie: " + movieTitle
+    //     + "\nDue: " + response.rental.due_date );
+    //    },
+    //
+    //   error: function(model, response){
+    //     console.log(response);
+    //
+    //     if ( response.responseJSON.errors.title ) { var titleError = response.responseJSON.errors.title[0] };
+    //     if ( response.responseJSON.errors.customer_id ) { var customerError = response.responseJSON.errors.customer_id[0] }
+    //     // this worked - but you have to know ahead of time that there is a error with title...
+    //     alert( "Something went wrong:\n" + titleError + "\n" + customerError);
+    //   }
+    // });
+    // this.model.url = 'http://localhost:3000/rentals/';
+  },
+
+  onCheckout: function(event) {
     console.log("in onCheckout");
     var movieTitle = this.$('#rental-movie-title').val();
     var customerId = this.$('#rental-customer-id').val();
@@ -73,7 +107,7 @@ var RentalView = Backbone.View.extend({
     this.model.set('customer_id', customerId);
     this.model.checkinUrl(movieTitle);
     var returnDate = new Date();
-    var self = this;
+    // var self = this;
     this.model.save({}, {
       success: function(model, response){
         // console.log(response.rental);
@@ -95,7 +129,7 @@ var RentalView = Backbone.View.extend({
   showForm: function(title) {
     console.log("in callback");
     console.log(title);
-  
+
     var rental = new Rental();
     var rentalView = new RentalView ({
       model: rental,

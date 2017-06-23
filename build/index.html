@@ -39,6 +39,7 @@
             <th>Checkout Date</th>
             <th>Due Date</th>
             <th>Returned</th>
+            <th>Check In</th>
           </tr>
           <tbody id="overdue-info"></tbody>
         </table>
@@ -63,8 +64,8 @@
         <% } else { %>
           <p><strong>Inventory: </strong><%- inventory%></p>
           <p><strong>Available Inventory: </strong><%- available_inventory %></p>
+          <button class="button btn-rental">Check Out This Movie</button>
         <% } %>
-        <button class="button btn-rental">Check Out This Movie</button>
       </div>
     </script>
 
@@ -80,7 +81,6 @@
         </label>
         <button class="button btn-checkout">Checkout</button>
         <button class="button btn-checkin">Checkin</button>
-
       </section>
     </script>
 
@@ -91,6 +91,7 @@
       <td><%- checkout_date %></td>
       <td><%- due_date %></td>
       <td><%- returned %></td>
+      <td><button class="button btn-checkin-from-list">Check In</button></td>
     </script>
 
     <script src="/app.bundle.js"></script>

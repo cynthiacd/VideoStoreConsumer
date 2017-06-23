@@ -129,10 +129,10 @@ $(document).ready(function() {
   $('#rental-all').click( buildRentalsList)
 
   $("#rentals").hide();
-  var rental = new Rental();
-  var rentalView = new RentalView({
-    model: rental,
-    templateCard: _.template( $('#rental-form-template').html() ),
-    el: 'main'
-  });
+  // var rental = new Rental();
+  // var rentalView = new RentalView({
+  //   model: rental,
+  //   templateCard: _.template( $('#rental-form-template').html() ),
+  //   el: 'main'
+  // });
 });

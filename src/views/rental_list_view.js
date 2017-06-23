@@ -19,7 +19,7 @@ var RentalListView = Backbone.View.extend({
 
     this.listenTo(this.model, "add", this.addRental);
     this.listenTo(this.model, "update", this.render);
-    this.listenTo(this.model, "remove", this.removeRental);
+    // this.listenTo(this.model, "remove", this.removeRental);
   },
 
   render: function(){

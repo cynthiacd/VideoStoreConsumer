@@ -85,3 +85,8 @@ th {
 h2 {
   border-bottom: solid;
 }
+
+.button.btn-checkin,
+.button.btn-checkout {
+  margin: 0;
+}
