@@ -13,9 +13,9 @@
     </header>
 
     <main class="row">
-      <button class="button" id="rental-list">Get Rails DB Movies</button>
+      <button class="button" id="rental-list">Rental Movies</button>
       <button class="button" id="new-movies-list">Search For New Movies</button>
-      <button class="button" id="rental-movie">Rental</button>
+      <button class="button" id="rental-movie">Checkout</button>
       <button class="button" id="rental-overdue">Overdue Movies</button>
       <button class="button" id="rental-all">All Oustanding Rentals</button>
 
@@ -53,7 +53,6 @@
         <h2><strong><%- title %></strong></h2>
         <p><strong>Summary: </strong><%- overview %></p>
         <p><strong>Release Date: </strong><%- release_date %></p>
-
         <% if ( inventory === null ) { %>
           <p>
             <strong>Quantity: </strong>
@@ -84,7 +83,6 @@
     </script>
 
     <script id="overdue-table" type="text/template">
-
       <td><%- title %></td>
       <td><%- name %></td>
       <td><%- customer_id %></td>
@@ -92,7 +90,6 @@
       <td><%- due_date %></td>
       <td><%- returned %></td>
       <td><button class="button btn-checkin-from-list">Check In</button></td>
-]
     </script>
 
     <script src="/app.bundle.js"></script>
