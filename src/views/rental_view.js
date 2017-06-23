@@ -66,15 +66,18 @@ var RentalView = Backbone.View.extend({
        },
 
       error: function(model, response){
-        if ( response.responseJSON.errors.title ) { var titleError = response.responseJSON.errors.title[0] };
-        if ( response.responseJSON.errors.customer_id ) { var customerError = response.responseJSON.errors.customer_id[0] }
+        // if ( response.responseJSON.errors.title ) { var titleError = response.responseJSON.errors.title[0] };
+        // if ( response.responseJSON.errors.customer_id ) { var customerError = response.responseJSON.errors.customer_id[0] }
         // this worked - but you have to know ahead of time that there is a error with title...
-        alert( "Something went wrong:\n" + titleError + "\n" + customerError);
+        // alert( "Something went wrong:\n" + titleError + "\n" + customerError);
+
+        alert("Something went wrong");
       }
     });
 
     this.model.url = 'http://localhost:3000/rentals/';
 
+    // unbind the events to prevent a zombie view
     this.model.unbind('change', this.render, this);
     this.unbind();
   }

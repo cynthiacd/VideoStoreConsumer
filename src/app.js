@@ -19,21 +19,9 @@ var buildMovieList = function(event){
   $("#rental-form").hide();
   $("#movie-list").show();
 
-  console.log("clicked on the button");
-
+  console.log("Getting the Library Movies");
   var movieList = new MovieList();
-  movieList.fetch(
-    { error: function(model, response) { alert("Server Error - Try Again Later") },
-      success: function(model, response) { console.log( "API success - got movies" ) }
-    }
-  );
-
-  var movieListView = new MovieListView({
-    model: movieList,
-    templateForm: _.template( $('#movie-card-template').html() ),
-    el: 'main'
-  });
-
+  getMovies(movieList);
 };
 
 var buildMovieListTMDb = function(event) {
@@ -43,9 +31,12 @@ var buildMovieListTMDb = function(event) {
 
   console.log("Getting movies from TMDb!");
   var searchText = $('#search').val();
-  // console.log(searchText);
   var movieList = new MovieList();
   movieList.cumstomUrl(searchText);
+  getMovies(movieList);
+};
+
+var getMovies = function(movieList) {
   movieList.fetch(
     { error: function(model, response) { alert("Server Error - Try Again Later") },
       success: function(model, response) { console.log( "API success - got movies" ) }
@@ -60,14 +51,13 @@ var buildMovieListTMDb = function(event) {
 };
 
 var showSearchBar = function(event) {
-  // event.stopPropagation();
   $("#rentals").hide();
   $("#rental-form").hide();
   $("#search-bar").show();
 };
 
 var showRentalForm = function(event) {
-  // event.stopPropagation();
+
   $("#search-bar").hide();
   $("#movie-list").hide();
   $("#rentals").hide();
@@ -77,48 +67,30 @@ var showRentalForm = function(event) {
     templateInfo: _.template( $('#rental-form-template').html() ),
     tagName: "div",
     model: rental,
-
   });
-  // this.$el.hide();
+
   $("#rental-form").empty();
   $('#rental-form').html( rentalView.$el );
   $("#rental-form").show();
 };
 
 var buildOverdueRentalsList = function(event) {
-  $("#search-bar").hide();
-  $("#rental-form").hide();
-  $("#movie-list").hide();
-
   console.log("Getting overdue movies");
-
   var overdueRentals = new RentalList ();
   overdueRentals.overdueUrl();
-  overdueRentals.fetch(
-    { error: function(model, response) { alert("Server Error - Try Again Later") },
-      success: function(model, response) { console.log( "API success - got overdue rental customers" ) }
-    }
-  );
-
-  var rentalListView = new RentalListView({
-    model: overdueRentals,
-    templateInfo: _.template( $("#overdue-table").html() ),
-    el: '#rentals'
-  });
-  $("#rentals").show();
+  getRentals(overdueRentals);
 };
 
 var buildRentalsList = function(event) {
-  $("#search-bar").hide();
-  $("#rental-form").hide();
-  $("#movie-list").hide();
-
-  console.log("Getting all rentals");
-
+  console.log("Getting all outstanding rentals");
   var rentals = new RentalList ();
+  getRentals(rentals);
+};
+
+var getRentals = function(rentals) {
   rentals.fetch(
     { error: function(model, response) { alert("Server Error - Try Again Later") },
-      success: function(model, response) { console.log( "API success - got overdue rental customers" ) }
+      success: function(model, response) { console.log( "API success - got overdue rentals" ) }
     }
   );
 
@@ -127,6 +99,10 @@ var buildRentalsList = function(event) {
     templateInfo: _.template( $("#overdue-table").html() ),
     el: '#rentals'
   });
+
+  $("#search-bar").hide();
+  $("#rental-form").hide();
+  $("#movie-list").hide();
   $("#rentals").show();
 };
 
@@ -137,14 +113,4 @@ $(document).ready(function() {
   $('#rental-movie').click( showRentalForm );
   $('#rental-overdue').click( buildOverdueRentalsList );
   $('#rental-all').click( buildRentalsList)
-
-  // $('.button.btn-rental').on("click", showRentalForm );
-
-  // $("#rentals").hide();
-  // var rental = new Rental();
-  // var rentalView = new RentalView({
-  //   model: rental,
-  //   templateForm: _.template( $('#rental-form-template').html() ),
-  //   el: 'main'
-  // });
 });

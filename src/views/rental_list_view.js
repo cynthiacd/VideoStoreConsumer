@@ -6,7 +6,6 @@ import Rental from '../models/rental';
 import RentalList from '../collections/rental_list';
 
 var RentalListView = Backbone.View.extend({
-
   initialize: function(params) {
     // console.log(this.model);
     this.templateInfo = params.templateInfo;
@@ -55,7 +54,6 @@ var RentalListView = Backbone.View.extend({
     });
     this.rentalViews = filteredList;
   }
-
 });
 
 export default RentalListView;
