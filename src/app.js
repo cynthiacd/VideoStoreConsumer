@@ -30,9 +30,10 @@ var buildMovieList = function(event){
 
   var movieListView = new MovieListView({
     model: movieList,
-    templateCard: _.template( $('#movie-card-template').html() ),
+    templateForm: _.template( $('#movie-card-template').html() ),
     el: 'main'
   });
+
 };
 
 var buildMovieListTMDb = function(event) {
@@ -53,7 +54,7 @@ var buildMovieListTMDb = function(event) {
 
   var movieListView = new MovieListView({
     model: movieList,
-    templateCard: _.template( $('#movie-card-template').html() ),
+    templateForm: _.template( $('#movie-card-template').html() ),
     el: 'main'
   });
 };
@@ -137,11 +138,13 @@ $(document).ready(function() {
   $('#rental-overdue').click( buildOverdueRentalsList );
   $('#rental-all').click( buildRentalsList)
 
+  // $('.button.btn-rental').on("click", showRentalForm );
+
   // $("#rentals").hide();
   // var rental = new Rental();
   // var rentalView = new RentalView({
   //   model: rental,
-  //   templateCard: _.template( $('#rental-form-template').html() ),
+  //   templateForm: _.template( $('#rental-form-template').html() ),
   //   el: 'main'
   // });
 });

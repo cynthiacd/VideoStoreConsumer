@@ -45,23 +45,21 @@ var MovieView = Backbone.View.extend({
   },
 
   onCheckout: function(event) {
-    console.log("want to checkout a movie");
-    var rental = new Rental({
-    });
-    var rentalView = new RentalView ({
-      model: rental,
+    console.log("want to checkout a movie - starting a rental");
+
+    var rental = new Rental;
+    var rentalView = new RentalView({
+      templateInfo: _.template( $('#rental-form-template').html() ),
       tagName: "div",
-      templateCard: _.template( $('#rental-form-template').html() )
+      model: rental,
     });
-    // console.log("hello");
 
-    // you can't do this here in the movie view the scope is not the whole document...
-    // $("movie-list").show();
-    // $("#rental-form").empty();
-    // $("#rental-form").append( rentalView.renderForm().$el );
-    // $("#rental-form").show();
-
-    Backbone.trigger( "checkout:movie", this.model.get("title") );
+    console.log(rentalView);
+    $("#movie-list").hide();
+    $("#rental-form").empty();
+    $('#rental-form').append( rentalView.$el );
+    $('#rental-movie-title').val(this.model.get("title"));
+    $("#rental-form").show();
   }
 });
 

@@ -11,12 +11,11 @@ var RentalView = Backbone.View.extend({
   initialize: function(params) {
     console.log(params);
     this.templateInfo = params.templateInfo;
-    this.templateForm = params.templateCard;
+    this.templateForm = params.templateForm;
 
-    if (params.templateCard) {}
+    if (params.templateForm) { this.renderForm(); }
     else { this.render(); }
 
-    this.listenTo(Backbone, "checkout:movie", this.showForm );
   },
 
   render: function() {
@@ -27,12 +26,13 @@ var RentalView = Backbone.View.extend({
     return this;
   },
 
-  renderForm: function() {
-    console.log("in rental-form");
-    var compiledTemplate = this.templateForm( this.model.toJSON() );
-    this.$('#rental-form').html(compiledTemplate);
-    return this;
-  },
+  // renderForm: function() {
+  //   console.log("in render of rental-form");
+  //   var compiledTemplate = this.templateForm( this.model.toJSON() );
+  //   this.$('#rental-form').html(compiledTemplate);
+  //   this.delegateEvents();
+  //   return this;
+  // },
 
   events: {
     'click .btn-checkout': 'onCheckout',
@@ -131,17 +131,6 @@ var RentalView = Backbone.View.extend({
 
     this.model.unbind('change', this.render, this);
     this.unbind();
-  },
-
-  showForm: function(title) {
-    console.log("in callback");
-    // console.log(title);
-
-    this.renderForm();
-    $("#movie-list").hide();
-    // $('#rental-form').append( this.$el );
-    this.$el.show();
-    $("#rental-movie-title").val(title);
   }
 });
 

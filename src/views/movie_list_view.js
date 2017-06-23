@@ -6,7 +6,7 @@ var MovieListView = Backbone.View.extend({
 
   initialize: function(params) {
     // console.log(this.model);
-    this.template = params.templateCard;
+    this.template = params.templateForm;
 
     this.movieViews = [];
 
