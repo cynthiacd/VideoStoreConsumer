@@ -29,9 +29,8 @@
 
       <section id="movie-list" class="row"></section>
       <section id="rental-form" class="row"></section>
-
       <section id="rentals" class="row">
-        <table class="row" >
+        <table>
           <tr>
             <th>Movie</th>
             <th>Customer</th>
@@ -70,7 +69,7 @@
     </script>
 
     <script id="rental-form-template" type="text/template">
-      <section class="row" id="rental">
+      <section class="columns large-12 small-12">
         <label>
           Movie Title
           <input type="text" name="rental-movie-title" id="rental-movie-title" placeholder="Search..">
@@ -85,6 +84,7 @@
     </script>
 
     <script id="overdue-table" type="text/template">
+
       <td><%- title %></td>
       <td><%- name %></td>
       <td><%- customer_id %></td>
@@ -92,6 +92,7 @@
       <td><%- due_date %></td>
       <td><%- returned %></td>
       <td><button class="button btn-checkin-from-list">Check In</button></td>
+]
     </script>
 
     <script src="/app.bundle.js"></script>

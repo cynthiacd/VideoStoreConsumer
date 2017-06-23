@@ -19,7 +19,7 @@ var RentalListView = Backbone.View.extend({
 
     this.listenTo(this.model, "add", this.addRental);
     this.listenTo(this.model, "update", this.render);
-    // this.listenTo(this.model, "remove", this.removeRental);
+    this.listenTo(this.model, "remove", this.removeRental);
   },
 
   render: function(){
@@ -38,10 +38,12 @@ var RentalListView = Backbone.View.extend({
   addRental: function(rawRental) {
     var rentalView = new RentalView({
       model: rawRental,
+      tagName: "tr",
       templateInfo: this.templateInfo
     });
 
     this.rentalViews.push(rentalView);
+    this.listenTo( rentalView, "updateList", this.render);
   },
 
   removeRental: function(movie) {

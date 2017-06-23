@@ -90,3 +90,7 @@ h2 {
 .button.btn-checkout {
   margin: 0;
 }
+
+#form {
+  width: 100%;
+}

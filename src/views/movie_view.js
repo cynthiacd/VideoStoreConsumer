@@ -1,4 +1,8 @@
 import Backbone from 'backbone';
+import _ from 'underscore';
+import $ from 'jquery';
+import RentalView from './rental_view';
+import Rental from '../models/rental';
 
 var MovieView = Backbone.View.extend({
   tagName: 'li',
@@ -42,10 +46,23 @@ var MovieView = Backbone.View.extend({
 
   onCheckout: function(event) {
     console.log("want to checkout a movie");
-    // var rentalView = new RentalView
+    var rental = new Rental({
+    });
+    var rentalView = new RentalView ({
+      model: rental,
+      tagName: "div",
+      templateCard: _.template( $('#rental-form-template').html() )
+    });
+    // console.log("hello");
+
+    // you can't do this here in the movie view the scope is not the whole document...
+    // $("movie-list").show();
+    // $("#rental-form").empty();
+    // $("#rental-form").append( rentalView.renderForm().$el );
+    // $("#rental-form").show();
+
     Backbone.trigger( "checkout:movie", this.model.get("title") );
   }
-
 });
 
 export default MovieView;

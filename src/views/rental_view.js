@@ -4,17 +4,19 @@ import $ from 'jquery';
 import Rental from '../models/rental';
 
 var RentalView = Backbone.View.extend({
-  tagName: "tr",
+  tagName: function(){
+    return this.model.get('tagName');
+  },
 
   initialize: function(params) {
     console.log(params);
     this.templateInfo = params.templateInfo;
     this.templateForm = params.templateCard;
 
-    if (params.templateCard) { this.renderForm(); }
+    if (params.templateCard) {}
     else { this.render(); }
 
-    this.listenTo(Backbone, "checkout:movie", this.showForm )
+    this.listenTo(Backbone, "checkout:movie", this.showForm );
   },
 
   render: function() {
@@ -34,12 +36,11 @@ var RentalView = Backbone.View.extend({
 
   events: {
     'click .btn-checkout': 'onCheckout',
-    // 'click .btn-checkin': 'onReturn',
+    'click .btn-checkin': 'onReturn',
     'click .btn-checkin-from-list': 'onCheckInFromList'
   },
 
   onCheckInFromList: function(event) {
-    // console.log(this.model);
 
     var movieTitle = this.model.get("title");
     console.log(movieTitle);
@@ -50,25 +51,26 @@ var RentalView = Backbone.View.extend({
     console.log(this.model.url);
 
     // var self = this;
-    // this.model.save({}, {
-    //   success: function(model, response){
-    //     // console.log(response.rental);
-    //     alert("Success - Movie Checked Out! \nCustomer_id: "
-    //     + customerId
-    //     + "\nMovie: " + movieTitle
-    //     + "\nDue: " + response.rental.due_date );
-    //    },
-    //
-    //   error: function(model, response){
-    //     console.log(response);
-    //
-    //     if ( response.responseJSON.errors.title ) { var titleError = response.responseJSON.errors.title[0] };
-    //     if ( response.responseJSON.errors.customer_id ) { var customerError = response.responseJSON.errors.customer_id[0] }
-    //     // this worked - but you have to know ahead of time that there is a error with title...
-    //     alert( "Something went wrong:\n" + titleError + "\n" + customerError);
-    //   }
-    // });
-    // this.model.url = 'http://localhost:3000/rentals/';
+    this.model.save({}, {
+      success: function(model, response){
+        alert("Success - Movie Checked In! \nCustomer_id: "
+        + customerId + "\nMovie: " + movieTitle);
+       },
+
+      error: function(model, response){
+        console.log(response);
+
+        if ( response.responseJSON.errors.title ) { var titleError = response.responseJSON.errors.title[0] };
+        // if ( response.responseJSON.errors.customer_id ) { var customerError = response.responseJSON.errors.customer_id[0] }
+        // this worked - but you have to know ahead of time that there is a error with title...
+        alert( "Something went wrong:\n" + titleError + "\n" + customerError);
+      }
+    });
+
+    this.trigger("updateList", this.model);
+    this.model.url = 'http://localhost:3000/rentals/';
+    this.model.unbind('change', this.render, this);
+    this.unbind();
   },
 
   onCheckout: function(event) {
@@ -98,6 +100,8 @@ var RentalView = Backbone.View.extend({
       }
     });
     this.model.url = 'http://localhost:3000/rentals/';
+    this.model.unbind('change', this.render, this);
+    this.unbind();
   },
 
   onReturn: function(){
@@ -124,19 +128,19 @@ var RentalView = Backbone.View.extend({
       }
     });
     this.model.url = 'http://localhost:3000/rentals/';
+
+    this.model.unbind('change', this.render, this);
+    this.unbind();
   },
 
   showForm: function(title) {
     console.log("in callback");
-    console.log(title);
+    // console.log(title);
 
-    var rental = new Rental();
-    var rentalView = new RentalView ({
-      model: rental,
-      templateCard: _.template( $('#rental-form-template').html() )
-    });
+    this.renderForm();
     $("#movie-list").hide();
-    $("#rental-form").show();
+    // $('#rental-form').append( this.$el );
+    this.$el.show();
     $("#rental-movie-title").val(title);
   }
 });
