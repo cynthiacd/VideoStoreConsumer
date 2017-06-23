@@ -74,7 +74,7 @@ var RentalView = Backbone.View.extend({
         // this worked - but you have to know ahead of time that there is a error with title...
         // alert( "Something went wrong:\n" + titleError + "\n" + customerError);
 
-        alert("Something went wrong");
+        alert("Something went wrong:\n" + response.responseText );
       }
     });
 
