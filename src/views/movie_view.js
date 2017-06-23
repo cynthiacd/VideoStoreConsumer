@@ -10,12 +10,10 @@ var MovieView = Backbone.View.extend({
 
   initialize: function(params) {
     this.template = params.template;
-
-    // this.listenTo(this.model, "change", this.render);
-    // this.listenTo(this.model, "update", this.render);
-    // this.listenTo(this.model, "sync", this.render);
-
     this.render();
+
+    this.listenTo(this.model, "change", this.render);
+    this.listenTo(this.model, "update", this.render);
   },
 
   render: function() {
@@ -56,6 +54,7 @@ var MovieView = Backbone.View.extend({
 
     console.log(rentalView);
     $("#movie-list").hide();
+
     $("#rental-form").empty();
     $('#rental-form').append( rentalView.$el );
     $('#rental-movie-title').val(this.model.get("title"));

@@ -42,17 +42,19 @@ var RentalListView = Backbone.View.extend({
     });
 
     this.rentalViews.push(rentalView);
-    this.listenTo( rentalView, "updateList", this.render);
+    this.listenTo( rentalView, "updateList", this.removeRental );
   },
 
-  removeRental: function(movie) {
+  removeRental: function(rental) {
+    console.log("in remove Rental");
     var filteredList = [];
     this.rentalViews.forEach(function(rentalView){
-      if (rentalView.model != movie) {
-        filteredList.push(movieView);
+      if (rentalView.model != rental) {
+        filteredList.push(rentalView);
       }
     });
     this.rentalViews = filteredList;
+    this.render();
   }
 });
 

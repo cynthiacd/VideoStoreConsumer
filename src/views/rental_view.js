@@ -45,15 +45,18 @@ var RentalView = Backbone.View.extend({
     this.model.set('customer_id', customerId);
     this.model.checkinUrl(movieTitle);
     // var returnDate = new Date();
+    // this.trigger("updateList", this.model);
     this.postRental();
   },
 
   onCheckInFromList: function(event) {
+    console.log("in check in from list");
     var movieTitle = this.model.get("title");
-    console.log(movieTitle);
+    // console.log(movieTitle);
     var customerId = this.model.get("customer_id");
-    console.log(customerId);
+    // console.log(customerId);
     this.model.checkinUrl(movieTitle);
+    this.trigger("updateList", this.model);
     this.postRental();
   },
 

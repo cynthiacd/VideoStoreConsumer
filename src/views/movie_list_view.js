@@ -38,7 +38,6 @@ var MovieListView = Backbone.View.extend({
       model: rawMovie,
       template: this.template
     });
-
     this.movieViews.push(movieView);
   }
 
