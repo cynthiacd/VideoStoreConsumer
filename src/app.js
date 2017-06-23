@@ -59,14 +59,14 @@ var buildMovieListTMDb = function(event) {
 };
 
 var showSearchBar = function(event) {
-  event.stopPropagation();
+  // event.stopPropagation();
   $("#rentals").hide();
   $("#rental-form").hide();
   $("#search-bar").show();
 };
 
 var rentalMovie = function(event) {
-  event.stopPropagation();
+  // event.stopPropagation();
   $("#search-bar").hide();
   $("#movie-list").hide();
   $("#rentals").hide();
@@ -132,7 +132,7 @@ $(document).ready(function() {
   var rental = new Rental();
   var rentalView = new RentalView({
     model: rental,
-    templateCard: _.template( $('#rental-checkout-template').html() ),
+    templateCard: _.template( $('#rental-form-template').html() ),
     el: 'main'
   });
 });

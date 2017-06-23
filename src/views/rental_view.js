@@ -1,4 +1,7 @@
 import Backbone from 'backbone';
+import _ from 'underscore';
+import $ from 'jquery';
+import Rental from '../models/rental';
 
 var RentalView = Backbone.View.extend({
   tagName: "tr",
@@ -10,6 +13,8 @@ var RentalView = Backbone.View.extend({
 
     if (params.templateCard) { this.renderForm(); }
     else { this.render(); }
+
+    this.listenTo(Backbone, "checkout:movie", this.showForm )
   },
 
   render: function() {
@@ -21,6 +26,7 @@ var RentalView = Backbone.View.extend({
   },
 
   renderForm: function() {
+    console.log("in rental-form");
     var compiledTemplate = this.templateForm( this.model.toJSON() );
     this.$('#rental-form').html(compiledTemplate);
     return this;
@@ -42,7 +48,6 @@ var RentalView = Backbone.View.extend({
     this.model.save({}, {
       success: function(model, response){
         // console.log(response.rental);
-
         alert("Success - Movie Checked Out! \nCustomer_id: "
         + customerId
         + "\nMovie: " + movieTitle
@@ -51,7 +56,11 @@ var RentalView = Backbone.View.extend({
 
       error: function(model, response){
         console.log(response);
-        alert( "Something went wrong:\n" + response.responseText)
+
+        if ( response.responseJSON.errors.title ) { var titleError = response.responseJSON.errors.title[0] };
+        if ( response.responseJSON.errors.customer_id ) { var customerError = response.responseJSON.errors.customer_id[0] }
+        // this worked - but you have to know ahead of time that there is a error with title...
+        alert( "Something went wrong:\n" + titleError + "\n" + customerError);
       }
     });
     this.model.url = 'http://localhost:3000/rentals/';
@@ -81,6 +90,20 @@ var RentalView = Backbone.View.extend({
       }
     });
     this.model.url = 'http://localhost:3000/rentals/';
+  },
+
+  showForm: function(title) {
+    console.log("in callback");
+    console.log(title);
+  
+    var rental = new Rental();
+    var rentalView = new RentalView ({
+      model: rental,
+      templateCard: _.template( $('#rental-form-template').html() )
+    });
+    $("#movie-list").hide();
+    $("#rental-form").show();
+    $("#rental-movie-title").val(title);
   }
 });
 

@@ -48,8 +48,8 @@
     <!-- Templates -->
 
     <script id="movie-card-template" type="text/template">
-      <img alt="movie image" class="columns large-3 small-2" src=<%- image_url %> >
-      <div class="columns large-9 small-10" id="movie-text">
+      <img alt="movie image" class="columns large-2 small-2" src=<%- image_url %> >
+      <div class="columns large-10 small-10" id="movie-text">
         <h2><strong><%- title %></strong></h2>
         <p><strong>Summary: </strong><%- overview %></p>
         <p><strong>Release Date: </strong><%- release_date %></p>
@@ -64,11 +64,11 @@
           <p><strong>Inventory: </strong><%- inventory%></p>
           <p><strong>Available Inventory: </strong><%- available_inventory %></p>
         <% } %>
-        <!-- <button class="button btn-rental">Check Out This Movie</button> -->
+        <button class="button btn-rental">Check Out This Movie</button>
       </div>
     </script>
 
-    <script id="rental-checkout-template" type="text/template">
+    <script id="rental-form-template" type="text/template">
       <section class="row" id="rental">
         <label>
           Movie Title

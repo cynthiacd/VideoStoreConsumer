@@ -26,7 +26,7 @@ var MovieView = Backbone.View.extend({
 
   events: {
     'click .btn-add-lib': 'addMovie',
-    'click .btn-checkout': 'onCheckout'
+    'click .btn-rental': 'onCheckout'
   },
 
   addMovie: function(event) {
@@ -38,6 +38,12 @@ var MovieView = Backbone.View.extend({
       error: function(model, response) { alert("Error - Movie was not added to library\n" + response.responseText ); },
       success: function(model, response) { alert(title + ': was added successfully!' + "\n" + 'Inventory: ' + inventory); }
     });
+  },
+
+  onCheckout: function(event) {
+    console.log("want to checkout a movie");
+    // var rentalView = new RentalView
+    Backbone.trigger( "checkout:movie", this.model.get("title") );
   }
 
 });
